@@ -106,6 +106,14 @@ Gunakan tag berikut di pertanyaan atau opsi jawaban:
 - `[audio:uploads/audio/namafile.mp3]` — Audio
 - `[video:uploads/video/namafile.mp4]` — Video
 
+## Client Android
+
+Untuk pengalaman ujian yang lebih aman di HP, gunakan aplikasi Android **ExamApp**:
+
+- **Repo**: https://github.com/treximaru/ExamApp
+- **Fitur**: VPN blocking, app lock, anti-screenshot, anti-navigation
+- **Alur**: App blokir semua internet → load website ujian → jika siswa keluar → terkunci otomatis
+
 ## Lisensi
 
 Personal use. dibuat untuk kebutuhan sekolah MAZ.
