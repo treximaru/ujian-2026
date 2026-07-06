@@ -461,13 +461,15 @@ input:checked+.sl{background:#22c55e}input:checked+.sl:before{background:#fff;tr
 .media-item .info{padding:4px 6px;font-size:.68rem;color:#94a3b8;word-break:break-all}
 .media-item audio{width:100%;height:30px}
 .media-item .cpy{position:absolute;top:3px;right:3px;background:#1e293b;border:none;border-radius:4px;color:#60a5fa;cursor:pointer;padding:2px 6px;font-size:.62rem;opacity:.85}
-.ujian-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-.ujian-card{padding:14px 16px;background:#0f172a;border-radius:10px;cursor:pointer;transition:.15s;border:1px solid transparent;position:relative}
-.ujian-card:hover{border-color:#3b82f6;background:#1e293b}
-.ujian-card .uj-t{font-size:.9rem;font-weight:600;margin-bottom:4px}
-.ujian-card .uj-m{display:flex;gap:10px;font-size:.75rem;color:#64748b;flex-wrap:wrap}
-.ujian-card .uj-actions{position:absolute;top:8px;right:10px;display:flex;gap:4px;opacity:0;transition:.15s}
-.ujian-card:hover .uj-actions{opacity:1}
+.ujian-list{display:flex;flex-direction:column;gap:6px}
+.ujian-row{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#0f172a;border-radius:10px;border:1px solid #1e293b;transition:.15s}
+.ujian-row:hover{border-color:#334155;background:#1e293b}
+.ujian-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
+.ujian-folder{font-size:1.3rem;flex-shrink:0}
+.ujian-info{flex:1;min-width:0}
+.ujian-title{font-size:.9rem;font-weight:600;color:#e2e8f0}
+.ujian-meta{display:flex;gap:10px;font-size:.75rem;color:#64748b;flex-wrap:wrap;margin-top:3px}
+.ujian-actions{display:flex;gap:6px;flex-shrink:0}
 .breadcrumb{font-size:.8rem;color:#64748b;margin-bottom:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .breadcrumb a{color:#60a5fa;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .breadcrumb a:hover{text-decoration:underline}
@@ -669,22 +671,27 @@ function toggleSidebar(){document.getElementById('sidebarMobile').classList.togg
     </div>
   </div>
 
-  <div class="ujian-grid">
+  <div class="ujian-list">
   <?php foreach($filterUjian as $uj):
     $jml=count(array_filter($filterSoal,fn($s)=>$s['ujian_id']===$uj['id']));
     $jmlAktif=count(array_filter($filterSoal,fn($s)=>$s['ujian_id']===$uj['id']&&$s['aktif']));
     $canToggle=isA()||$uj['guru_id']===$uid;?>
-    <div class="ujian-card" onclick="location.href='?menu=soal<?=isA()&&$filterUid!==''?'&guru='.urlencode($filterUid):''?>&ujian=<?=urlencode($uj['id'])?>'">
-      <div class="uj-t">📁 <?=htmlspecialchars($uj['judul'])?></div>
-      <div class="uj-m">
-        <span>📝 <?=$jml?> soal</span>
-        <span>🟢 <?=$jmlAktif?> aktif</span>
-        <span class="label <?=$uj['aktif']?'label-green':'label-red'?>"><?=$uj['aktif']?'Aktif':'Nonaktif'?></span>
-      </div>
+    <div class="ujian-row">
+      <a href="?menu=soal<?=isA()&&$filterUid!==''?'&guru='.urlencode($filterUid):''?>&ujian=<?=urlencode($uj['id'])?>" class="ujian-link">
+        <span class="ujian-folder">📁</span>
+        <div class="ujian-info">
+          <div class="ujian-title"><?=htmlspecialchars($uj['judul'])?></div>
+          <div class="ujian-meta">
+            <span>📝 <?=$jml?> soal</span>
+            <span>🟢 <?=$jmlAktif?> aktif</span>
+            <span class="label <?=$uj['aktif']?'label-green':'label-red'?>"><?=$uj['aktif']?'Aktif':'Nonaktif'?></span>
+          </div>
+        </div>
+      </a>
       <?php if($canToggle):?>
-      <div class="uj-actions">
-        <a href="?toggle_ujian=<?=urlencode($uj['id'])?>" class="btn btn-xs btn-outline" onclick="event.stopPropagation()"><?=$uj['aktif']?'🔴 Nonaktifkan':'🟢 Aktifkan'?></a>
-        <a href="?hapus_ujian=<?=urlencode($uj['id'])?>" class="btn btn-xs btn-danger" onclick="event.stopPropagation();return confirm('Hapus folder ini beserta semua soalnya?')">🗑 Hapus</a>
+      <div class="ujian-actions">
+        <a href="?toggle_ujian=<?=urlencode($uj['id'])?>" class="btn btn-xs <?=$uj['aktif']?'btn-warning':'btn-success'?>" onclick="event.stopPropagation()"><?=$uj['aktif']?'Nonaktifkan':'Aktifkan'?></a>
+        <a href="?hapus_ujian=<?=urlencode($uj['id'])?>" class="btn btn-xs btn-danger" onclick="event.stopPropagation();return confirm('Hapus folder ini beserta semua soalnya?')">Hapus</a>
       </div>
       <?php endif;?>
     </div>
