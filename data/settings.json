@@ -1,0 +1,15 @@
+{
+    "_csrf": "67e06df20d6ff08a4fec9054328e308b522fdc8ef58d15507971b0e269a57dbc",
+    "sp_set": "1",
+    "waktu_per_soal": "60",
+    "waktu_min_soal": "10",
+    "acak_soal": "on",
+    "blokir_translate": "on",
+    "deteksi_tab": "on",
+    "deteksi_split": "on",
+    "blokir_copy": "on",
+    "blokir_devtools": "on",
+    "timer_per_soal": "on",
+    "max_pindah_tab": "1",
+    "max_split_screen": "1"
+}

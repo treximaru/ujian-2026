@@ -1,0 +1,20 @@
+[
+    {
+        "id": "u6a492cfbc8721",
+        "guru_id": "g6a47a0061060d",
+        "judul": "Ulangan Harian",
+        "aktif": 1
+    },
+    {
+        "id": "u6a4af8b84e519",
+        "guru_id": "guru001",
+        "judul": "Bahasa Inggris",
+        "aktif": 1
+    },
+    {
+        "id": "u6a4af8c9224c6",
+        "guru_id": "guru001",
+        "judul": "Matematika",
+        "aktif": 1
+    }
+]

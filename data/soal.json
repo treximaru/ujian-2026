@@ -1,0 +1,227 @@
+[
+  {
+    "id": "stest1",
+    "guru_id": "g6a47a0061060d",
+    "ujian_id": "u6a492cfbc8721",
+    "pertanyaan": "Test soal 1: What is procedure text?",
+    "pilihan": [
+      "Recipe",
+      "Story",
+      "Report",
+      "Essay",
+      "News"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "stest2",
+    "guru_id": "g6a47a0061060d",
+    "ujian_id": "u6a492cfbc8721",
+    "pertanyaan": "Test soal 2: What is procedure text?",
+    "pilihan": [
+      "Recipe",
+      "Story",
+      "Report",
+      "Essay",
+      "News"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "stest3",
+    "guru_id": "g6a47a0061060d",
+    "ujian_id": "u6a492cfbc8721",
+    "pertanyaan": "Test soal 3: What is procedure text?",
+    "pilihan": [
+      "Recipe",
+      "Story",
+      "Report",
+      "Essay",
+      "News"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "stest4",
+    "guru_id": "g6a47a0061060d",
+    "ujian_id": "u6a492cfbc8721",
+    "pertanyaan": "Test soal 4: What is procedure text?",
+    "pilihan": [
+      "Recipe",
+      "Story",
+      "Report",
+      "Essay",
+      "News"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "stest5",
+    "guru_id": "g6a47a0061060d",
+    "ujian_id": "u6a492cfbc8721",
+    "pertanyaan": "Test soal 5: What is procedure text?",
+    "pilihan": [
+      "Recipe",
+      "Story",
+      "Report",
+      "Essay",
+      "News"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8b85f705",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8b84e519",
+    "pertanyaan": "Read the menu below!\n[img:uploads/images/6a4af89ac99fb.png]\nWhat should you order for breakfast?",
+    "pilihan": [
+      "Toast and coffee",
+      "Pizza and cola",
+      "Sushi and tea",
+      "Burger and milkshake",
+      "Steak and wine"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8b862d9c",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8b84e519",
+    "pertanyaan": "Listen to the audio below!\n[audio:uploads/audio/6a4af89ad96d5.wav]\nWhat is the topic of the audio?",
+    "pilihan": [
+      "Weather forecast",
+      "Daily routine",
+      "Travel plan",
+      "Food recipe",
+      "Sports news"
+    ],
+    "jawaban": 1,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8b8661ce",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8b84e519",
+    "pertanyaan": "Which picture shows a procedure text?",
+    "pilihan": [
+      "[img:uploads/images/6a4af89acfa98.png] Procedure",
+      "[img:uploads/images/6a4af89accbc5.png] Formula",
+      "[img:uploads/images/6a4af89ad2834.png] Geometry",
+      "[img:uploads/images/6a4af89ad63ab.png] Warning",
+      "No image"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8b8699f8",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8b84e519",
+    "pertanyaan": "Which audio says 'Good morning'?",
+    "pilihan": [
+      "[audio:uploads/audio/6a4af89ad96d5.wav] Option A",
+      "[audio:uploads/audio/6a4af89adcd3a.wav] Option B",
+      "[audio:uploads/audio/6a4af89ae0085.wav] Option C",
+      "No audio",
+      "No audio"
+    ],
+    "jawaban": 1,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8b86d020",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8b84e519",
+    "pertanyaan": "Look at this picture!\n[img:uploads/images/6a4af89ad2834.png]\nListen to the options and choose the correct description.\n[audio:uploads/audio/6a4af89adcd3a.wav]",
+    "pilihan": [
+      "It is a warning sign",
+      "It is a math formula",
+      "It is a geometry shape",
+      "It is a procedure text",
+      "It is a breakfast menu"
+    ],
+    "jawaban": 2,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8c9325f3",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8c9224c6",
+    "pertanyaan": "Look at the shape below!\n[img:uploads/images/6a4af89ad2834.png]\nWhat is the area formula for this shape?",
+    "pilihan": [
+      "A = l x w",
+      "A = 1/2 x b x h",
+      "A = pi x r^2",
+      "A = 2(l + w)",
+      "A = s^2"
+    ],
+    "jawaban": 2,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8c935c4e",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8c9224c6",
+    "pertanyaan": "Listen to the math problem!\n[audio:uploads/audio/6a4af89ae0085.wav]\nSolve: 15 + 27 = ?",
+    "pilihan": [
+      "42",
+      "41",
+      "43",
+      "44",
+      "40"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8c93997e",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8c9224c6",
+    "pertanyaan": "Which image shows a formula?",
+    "pilihan": [
+      "[img:uploads/images/6a4af89accbc5.png] Formula",
+      "[img:uploads/images/6a4af89ad2834.png] Geometry",
+      "[img:uploads/images/6a4af89acfa98.png] Procedure",
+      "[img:uploads/images/6a4af89ad63ab.png] Warning",
+      "[img:uploads/images/6a4af89ac99fb.png] Menu"
+    ],
+    "jawaban": 0,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8c93d6b7",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8c9224c6",
+    "pertanyaan": "Listen to the instruction!\n[audio:uploads/audio/6a4af89adcd3a.wav]\nThen look at this image: [img:uploads/images/6a4af89accbc5.png]\nWhat does it represent?",
+    "pilihan": [
+      "A triangle",
+      "A math formula",
+      "A warning sign",
+      "A breakfast menu",
+      "A procedure"
+    ],
+    "jawaban": 1,
+    "aktif": 1
+  },
+  {
+    "id": "s6a4af8c941a1e",
+    "guru_id": "guru001",
+    "ujian_id": "u6a4af8c9224c6",
+    "pertanyaan": "What is 25 x 4?",
+    "pilihan": [
+      "90",
+      "100",
+      "110",
+      "120",
+      "1000"
+    ],
+    "jawaban": 1,
+    "aktif": 1
+  }
+]

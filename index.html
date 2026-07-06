@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="google" content="notranslate">
+<title>MAZ Ujian</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+<script src="/js/lucide.min.js" onload="lucide.createIcons()"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:12px}
+.card{background:#1e293b;border-radius:16px;padding:20px;max-width:440px;width:100%;box-shadow:0 25px 50px -12px rgba(0,0,0,.5)}
+.logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#f97316);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;margin-bottom:10px}
+h1{font-size:1.3rem;margin-bottom:2px;letter-spacing:-.02em}.sub{color:#64748b;font-size:.8rem;margin-bottom:18px}
+label{display:block;font-size:.75rem;color:#94a3b8;margin-top:10px;margin-bottom:3px;font-weight:500}
+input{width:100%;padding:14px 16px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;font-size:1rem;outline:none;transition:.2s}
+input:focus{border-color:#3b82f6}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;padding:14px;border-radius:10px;border:none;background:#3b82f6;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:.1s;-webkit-user-select:none}
+.btn:active{transform:scale(.97)}
+.btn-success{background:#22c55e}.btn-success:active{background:#16a34a}
+.btn-muted{background:#334155;color:#94a3b8;font-size:.85rem;padding:10px}
+.btn-muted:active{background:#475569}
+.btn-outline{background:transparent;border:1px solid #334155;color:#94a3b8}
+.hidden{display:none!important}
+
+/* Ujian Selection */
+.ujian-list{margin-top:8px}
+.ujian-card{background:#0f172a;border:1.5px solid transparent;border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:12px}
+.ujian-card:active{border-color:#3b82f6;background:#1e293b;transform:scale(.98)}
+.ujian-card .uc-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#1e293b,#334155);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ujian-card .uc-info{flex:1;min-width:0}
+.ujian-card .uc-title{font-size:.9rem;font-weight:600;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ujian-card .uc-meta{font-size:.72rem;color:#64748b}
+.ujian-card .uc-num{font-size:1.2rem;font-weight:700;color:#60a5fa;text-align:center;flex-shrink:0}
+.ujian-card .uc-num small{display:block;font-size:.6rem;font-weight:400;color:#64748b}
+
+/* Exam */
+.timer{font-size:1.6rem;font-weight:800;text-align:center;padding:8px;background:#0f172a;border-radius:10px;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.timer.warning{color:#f59e0b}.timer.danger{color:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.exam-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px}
+.exam-title{font-size:.95rem;font-weight:700;line-height:1.3}
+.exam-meta{font-size:.72rem;color:#94a3b8;margin-top:2px}
+.badge{padding:2px 8px;border-radius:999px;font-size:.65rem;font-weight:600;white-space:nowrap}
+.bg-green{background:#052e16;color:#22c55e;border:1px solid #22c55e33}
+.bg-red{background:#450a0a;color:#ef4444;border:1px solid #ef444433}
+.options{display:flex;flex-direction:column;gap:6px}
+.option{padding:12px 14px;border-radius:10px;border:1.5px solid #334155;cursor:pointer;transition:.1s;font-size:.9rem;line-height:1.4;min-height:44px;display:flex;align-items:center}
+.option:active{border-color:#3b82f6;background:#1e293b;transform:scale(.98)}
+.option.selected{border-color:#3b82f6;background:#1e3a5f;color:#93c5fd;font-weight:500}
+.opt-letter{font-weight:700;margin-right:8px;width:22px;flex-shrink:0;text-align:center}
+.q-text{font-size:.95rem;line-height:1.6;margin-bottom:14px;padding:4px 0;word-break:break-word}
+
+/* Progress */
+.progress-bar{height:4px;background:#334155;border-radius:2px;margin-bottom:10px;overflow:hidden}
+.progress-fill{height:100%;background:#3b82f6;border-radius:2px;transition:width .2s;width:0}
+.q-number{font-size:.75rem;color:#64748b;margin-bottom:6px;font-weight:500}
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px}
+.nav-row button{flex:1}
+.btn-nav{background:#334155;color:#e2e8f0;padding:12px;border-radius:10px;border:none;font-size:.9rem;font-weight:600;cursor:pointer;transition:.1s;display:flex;align-items:center;justify-content:center;gap:4px}
+.btn-nav:active{transform:scale(.97);background:#475569}
+.btn-nav:disabled{opacity:.3;pointer-events:none}
+.lucide-spin{animation:lucide-spin 1.5s linear infinite}@keyframes lucide-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="loginCard" class="card">
+  <div class="logo">M</div>
+  <h1>Ujian Online</h1>
+  <p class="sub">Masukkan NIS dan password anda</p>
+  <form onsubmit="login(event)">
+    <label>NIS</label>
+    <input type="text" id="nisInput" placeholder="12345678" required autocomplete="off">
+    <label>Password</label>
+    <input type="password" id="passInput" placeholder="password" required>
+    <div id="loginError" style="color:#ef4444;font-size:.82rem;text-align:center;margin-top:8px;display:none"></div>
+    <button class="btn" type="submit" id="loginBtn" style="margin-top:14px"><i data-lucide="log-in" style="width:18px;height:18px"></i> Masuk Ujian</button>
+  </form>
+  <p style="color:#475569;font-size:.7rem;text-align:center;margin-top:10px">MAZ Examination System</p>
+</div>
+
+<!-- ═══ UJIAN SELECTION ═══ -->
+<div id="ujianListCard" class="card hidden">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+    <div class="logo" style="margin:0">M</div>
+    <div>
+      <div style="font-size:.9rem;font-weight:600">Pilih Ujian</div>
+      <div id="userInfo" style="font-size:.72rem;color:#94a3b8">Nama · Kelas</div>
+      <div id="userNis" style="font-size:.65rem;color:#64748b">NIS: -</div>
+    </div>
+  </div>
+  <div class="ujian-list" id="ujianContainer"></div>
+  <button class="btn btn-muted" style="margin-top:12px" onclick="logout()"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Kembali</button>
+</div>
+
+<!-- ═══ LOADING ═══ -->
+<div id="loading" class="card hidden" style="text-align:center">
+  <div style="padding:20px"><i data-lucide="loader" style="width:18px;height:18px" class="lucide-spin"></i> Memuat soal…</div>
+</div>
+
+<!-- ═══ RESULT ═══ -->
+<div id="resultCard" class="card hidden" style="text-align:center">
+  <div style="padding:16px">
+    <div style="font-size:3rem;margin-bottom:8px"><i data-lucide="party-popper" style="width:40px;height:40px;color:#f59e0b"></i></div>
+    <h2 id="resultTitle">Ujian Selesai!</h2>
+    <div id="resultIdentity" style="font-size:.8rem;color:#94a3b8;margin:8px 0;line-height:1.6">
+      <div id="resultNama" style="font-weight:600;color:#e2e8f0">-</div>
+      <div id="resultKelas">Kelas: -</div>
+      <div id="resultNis">NIS: -</div>
+    </div>
+    <div id="scoreSection">
+      <div style="font-size:2.5rem;font-weight:800;margin:12px 0;background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent" id="resultScore">0</div>
+      <div style="font-size:.82rem;color:#94a3b8;margin-bottom:14px">Nilai Akhir</div>
+    </div>
+    <div id="resultDetail" style="font-size:.85rem;color:#94a3b8;margin-bottom:16px;line-height:1.5"></div>
+    <button class="btn btn-success" onclick="logout()"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Kembali</button>
+  </div>
+</div>
+
+<!-- ═══ EXAM ═══ -->
+<div id="examCard" class="card hidden" style="max-width:480px">
+  <div class="exam-header">
+    <div>
+      <div class="exam-title" id="examTitle">Ujian</div>
+      <div class="exam-meta" id="siswaInfo">Nama · Kelas</div>
+    </div>
+    <div><span class="badge bg-green" id="qBadge">1/10</span></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="timer hidden" id="timerDisplay">60</div>
+  <div class="q-text" id="questionText"></div>
+  <div class="options" id="optionsContainer"></div>
+  <div class="nav-row">
+    <button class="btn-nav" id="prevBtn" onclick="prevQ()"><i data-lucide="chevron-left" style="width:16px;height:16px"></i> Sebelumnya</button>
+    <button class="btn-nav btn-success" id="nextBtn" onclick="nextQ()">Selanjutnya <i data-lucide="chevron-right" style="width:16px;height:16px"></i></button>
+    <button class="btn btn-success hidden" id="submitBtn" onclick="submitExam()"><i data-lucide="check-circle" style="width:16px;height:16px"></i> Selesai</button>
+  </div>
+</div>
+
+<script>
+const API='/guru/';
+let cheatCount={switchTab:0,resize:0}, examActive=false, isEnding=false, soalArr=[], userData={}, settings={}, currentQ=0, timerInterval=null, timeLeft=0, selectedUjian=null, questionStartTime=0, minTimeInterval=null;
+
+async function loadSettings(){
+  try{const r=await fetch(API+'?api_settings=1',{cache:'no-store'});settings=await r.json();}catch(e){settings={};}
+}
+
+// Security detection
+function logCheat(type,detail){
+  apiPost({api_log_curang:1,nis:userData.nis,nama:userData.nama,tipe:type,detail:detail});
+}
+function initSecurity(){
+  if(settings.deteksi_tab!==false){
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden && examActive){cheatCount.switchTab++;logCheat('Pindah Tab','Tab ke-'+(cheatCount.switchTab));if(cheatCount.switchTab>=(settings.max_pindah_tab||3))endExam('Tab terlalu sering berpindah');}
+    });
+  }
+  if(settings.deteksi_split!==false){
+    window.addEventListener('resize',()=>{
+      if(!examActive)return;const w=window.outerWidth-screen.width,h=window.outerHeight-screen.height;
+      if(w>100||h>100){cheatCount.resize++;logCheat('Split Screen','Terdeteksi ukuran layar');if(cheatCount.resize>=(settings.max_split_screen||2))endExam('Split screen terdeteksi');}
+    });
+  }
+  if(settings.blokir_copy!==false){document.addEventListener('copy',e=>e.preventDefault());document.addEventListener('cut',e=>e.preventDefault());document.addEventListener('paste',e=>e.preventDefault());}
+  if(settings.blokir_devtools!==false){
+    setInterval(()=>{const d=/(\x3c)/g.test(/\x3c/.toString());if(d){console.log('%c⛔','font-size:30px');logCheat('DevTools','Console terbuka');if(examActive)endExam('DevTools terdeteksi');}},1000);
+  }
+  if(settings.blokir_translate!==false){document.addEventListener('contextmenu',e=>e.preventDefault());}
+}
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+async function apiPost(data){
+  const f=new URLSearchParams(data).toString();
+  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:f});
+  return await r.text();
+}
+
+// ─── LOGIN ───
+async function login(e){
+  e.preventDefault();
+  const n=document.getElementById('nisInput').value.trim(),p=document.getElementById('passInput').value.trim();
+  const er=document.getElementById('loginError');
+  if(!n||!p){er.textContent='Isi NIS dan password!';er.style.display='block';return;}
+  er.style.display='none';
+  const btn=document.getElementById('loginBtn');
+  btn.disabled=true;btn.innerHTML='<i data-lucide="loader" style="width:18px;height:18px" class="lucide-spin"></i> Masuk…'; if(typeof lucide!=='undefined')lucide.createIcons();
+  try{
+    const r=await apiPost({api_login_siswa:1,nis:n,password:p}),d=JSON.parse(r);
+    if(d.status==='ok'){
+      userData={nis:d.nis,nama:d.nama,kelas:d.kelas};
+      document.getElementById('loginCard').classList.add('hidden');
+      document.getElementById('userInfo').textContent=d.nama+' · '+d.kelas;
+      document.getElementById('userNis').textContent='NIS: '+d.nis;
+      document.getElementById('ujianListCard').classList.remove('hidden');
+      loadUjianList();
+    }else{
+      er.textContent='NIS / password salah!';
+      er.style.display='block';btn.disabled=false;btn.innerHTML='<i data-lucide="log-in" style="width:18px;height:18px"></i> Masuk Ujian'; if(typeof lucide!=='undefined')lucide.createIcons();
+    }
+  }catch(e){
+    er.textContent='Gagal terhubung ke server.';
+    er.style.display='block';btn.disabled=false;btn.innerHTML='<i data-lucide="log-in" style="width:18px;height:18px"></i> Masuk Ujian'; if(typeof lucide!=='undefined')lucide.createIcons();
+  }
+}
+
+// ─── UJIAN LIST ───
+async function loadUjianList(){
+  try{
+    const r=await fetch(API+'?api_ujian_list=1',{cache:'no-store'});
+    const list=await r.json();
+    const c=document.getElementById('ujianContainer');
+    if(!list||list.length===0){
+      c.innerHTML='<div style="text-align:center;padding:20px;color:#64748b;font-size:.85rem"><i data-lucide="x-circle" style="width:16px;height:16px;color:#ef4444"></i> Belum ada ujian aktif.</div>'; if(typeof lucide!=='undefined')lucide.createIcons();
+      return;
+    }
+    c.innerHTML=list.map(u=>`
+      <div class="ujian-card" onclick="startUjian('${u.id}','${u.judul.replace(/'/g,"\\'")}',${u.soal})">
+        <div class="uc-icon"><i data-lucide="file-text" style="width:22px;height:22px"></i></div>
+        <div class="uc-info">
+          <div class="uc-title">${u.judul}</div>
+          <div class="uc-meta">${u.soal} soal</div>
+        </div>
+        <div class="uc-num">${u.soal}<small>soal</small></div>
+      </div>
+    `).join(''); if(typeof lucide!=='undefined')lucide.createIcons();
+  }catch(e){
+    document.getElementById('ujianContainer').innerHTML='<div style="text-align:center;padding:20px;color:#ef4444;font-size:.85rem"><i data-lucide="x-circle" style="width:16px;height:16px;color:#ef4444"></i> Gagal memuat daftar ujian.</div>'; if(typeof lucide!=='undefined')lucide.createIcons();
+  }
+}
+
+// ─── START UJIAN ───
+async function startUjian(id,judul,total){
+  selectedUjian=id;
+  document.getElementById('ujianListCard').classList.add('hidden');
+  document.getElementById('loading').classList.remove('hidden');
+  document.getElementById('loading').innerHTML='<div style="padding:20px"><i data-lucide="loader" style="width:18px;height:18px" class="lucide-spin"></i> Memuat soal…</div>'; if(typeof lucide!=='undefined')lucide.createIcons();
+  await loadSettings();
+  initSecurity();
+  try{
+    const r=await fetch(API+'?api_soal=1&ujian_id='+encodeURIComponent(selectedUjian),{cache:'no-store'}),d=await r.json();
+    if(!d||d.length===0){
+      document.getElementById('loading').innerHTML='<div style="color:#ef4444;padding:20px"><i data-lucide="x-circle" style="width:16px;height:16px;color:#ef4444"></i> Belum ada soal aktif.</div>'; if(typeof lucide!=='undefined')lucide.createIcons();
+      return;
+    }
+    soalArr=d.map(s=>{
+      const letters=['A','B','C','D','E'];
+      let opts=s.pilihan.map((t,i)=>({text:t,idx:i,letter:letters[i]||'?'})).filter(o=>o.text.trim()!=='');
+      return {...s,opts:opts,userAnswer:null};
+    });
+    if(settings.acak_soal!==false)soalArr=shuffleArr(soalArr);
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('examCard').classList.remove('hidden');
+    document.getElementById('examTitle').textContent=judul;
+    document.getElementById('siswaInfo').textContent=userData.nama+' · '+userData.kelas;
+    currentQ=0;
+    examActive=true;
+    renderQ();
+    if(settings.timer_per_soal!==false)startTimer();
+  }catch(e){
+    document.getElementById('loading').innerHTML='<div style="color:#ef4444;padding:20px"><i data-lucide="x-circle" style="width:16px;height:16px;color:#ef4444"></i> Gagal memuat soal.</div>'; if(typeof lucide!=='undefined')lucide.createIcons();
+  }
+}
+
+function renderMedia(text){
+  if(!text)return '';
+  return text
+    .replace(/\r\n/g,'<br>').replace(/\r/g,'<br>').replace(/\n/g,'<br>')
+    .replace(/\[img:(.+?)\]/g,'<img src="/guru/$1" alt="" loading="lazy" style="max-width:100%;border-radius:8px;margin:6px 0;display:block">')
+    .replace(/\[audio:(.+?)\]/g,'<audio controls src="/guru/$1" style="width:100%;margin:6px 0"></audio>')
+    .replace(/\[video:(.+?)\]/g,'<video controls src="/guru/$1" style="max-width:100%;border-radius:8px;margin:6px 0"></video>');
+}
+
+function renderQ(){
+  const s=soalArr[currentQ];
+  document.getElementById('qBadge').textContent=(currentQ+1)+'/'+soalArr.length;
+  document.getElementById('progressFill').style.width=((currentQ+1)/soalArr.length*100)+'%';
+  document.getElementById('questionText').innerHTML=renderMedia(s.pertanyaan);
+  const c=document.getElementById('optionsContainer');
+  c.innerHTML='';
+  s.opts.forEach((o,i)=>{
+    const d=document.createElement('div');
+    d.className='option'+(s.userAnswer===i?' selected':'');
+    d.innerHTML='<span class="opt-letter" style="color:'+(['#f87171','#60a5fa','#34d399','#fbbf24','#a78bfa'][i%5])+'">'+o.letter+'</span>'+renderMedia(o.text);
+    d.onclick=()=>selectOpt(i);
+    c.appendChild(d);
+  });
+  document.getElementById('prevBtn').disabled=currentQ===0;
+  const last=currentQ===soalArr.length-1;
+  document.getElementById('nextBtn').style.display=last?'none':'';
+  document.getElementById('submitBtn').classList.toggle('hidden',!last);
+  questionStartTime=Date.now();
+  checkMinTimeBtn();
+}
+
+function selectOpt(i){
+  soalArr[currentQ].userAnswer=i;
+  document.querySelectorAll('.option').forEach((o,j)=>o.className='option'+(j===i?' selected':''));
+}
+
+function nextQ(){
+  const minSec=parseInt(settings.waktu_min_soal)||0;
+  if(minSec>0){
+    const elapsed=(Date.now()-questionStartTime)/1000;
+    if(elapsed<minSec)return;
+  }
+  if(currentQ<soalArr.length-1){currentQ++;restartTimer();renderQ();}
+}
+function prevQ(){if(currentQ>0){currentQ--;restartTimer();renderQ();}}
+
+function startTimer(){
+  timeLeft=settings.waktu_per_soal||60;
+  const td=document.getElementById('timerDisplay');
+  td.classList.remove('hidden','warning','danger');
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{
+    timeLeft--;td.textContent=timeLeft;
+    if(timeLeft<=10)td.className='timer danger';
+    else if(timeLeft<=20)td.className='timer warning';
+    else td.className='timer';
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      if(currentQ<soalArr.length-1)nextQ();else submitExam();
+    }
+  },1000);
+}
+function restartTimer(){
+  clearInterval(timerInterval);
+  const td=document.getElementById('timerDisplay');
+  if(settings.timer_per_soal!==false){td.classList.remove('hidden');startTimer();}else td.classList.add('hidden');
+}
+function checkMinTimeBtn(){
+  clearInterval(minTimeInterval);
+  const minSec=parseInt(settings.waktu_min_soal)||0;
+  const btn=document.getElementById('nextBtn');
+  if(minSec<=0||btn.style.display==='none'){btn.disabled=false;return;}
+  btn.disabled=true;
+  minTimeInterval=setInterval(()=>{
+    const elapsed=(Date.now()-questionStartTime)/1000;
+    if(elapsed>=minSec){btn.disabled=false;clearInterval(minTimeInterval);}
+  },500);
+}
+
+// ─── END ───
+function endExam(reason){
+  if(isEnding)return;isEnding=true;examActive=false;
+  clearInterval(timerInterval);
+  document.getElementById('examCard').classList.add('hidden');
+  document.getElementById('resultCard').classList.remove('hidden');
+  const correct=soalArr.filter((s,i)=>s.userAnswer!==null&&s.opts[s.userAnswer]?.idx===s.jawaban).length;
+  const total=soalArr.length;
+  const score=total>0?Math.round(correct/total*100):0;
+  document.getElementById('resultTitle').innerHTML=reason?'<i data-lucide="shield-off" style="width:18px;height:18px;color:#ef4444;vertical-align:middle"></i> '+reason:'<i data-lucide="party-popper" style="width:40px;height:40px;color:#f59e0b"></i> Ujian Selesai!'; if(typeof lucide!=='undefined')lucide.createIcons();
+  document.getElementById('resultNama').textContent=userData.nama||'-';
+  document.getElementById('resultKelas').textContent='Kelas: '+(userData.kelas||'-');
+  document.getElementById('resultNis').textContent='NIS: '+(userData.nis||'-');
+  // Tampilkan/sembunyikan skor berdasarkan pengaturan admin
+  const showScore = settings.tampilkan_skor !== false;
+  document.getElementById('scoreSection').style.display = showScore ? '' : 'none';
+  if(showScore) document.getElementById('resultScore').textContent=score;
+  document.getElementById('resultDetail').innerHTML='<i data-lucide="check-circle" style="width:16px;height:16px;color:#22c55e;vertical-align:middle"></i> Benar: '+correct+' dari '+total+'<br>'+(reason?'':'<i data-lucide="calendar" style="width:14px;height:14px;vertical-align:middle"></i> '+new Date().toLocaleString('id-ID')); if(typeof lucide!=='undefined')lucide.createIcons();
+  if(!reason){
+    apiPost({api_submit_nilai:1,nis:userData.nis,nama:userData.nama,kelas:userData.kelas,judul:selectedUjian||'Ujian',nilai:score,benar:correct,total:total});
+  }
+}
+function submitExam(){endExam();}
+
+// ─── LOGOUT ───
+function logout(){
+  document.getElementById('ujianListCard').classList.add('hidden');
+  document.getElementById('resultCard').classList.add('hidden');
+  document.getElementById('examCard').classList.add('hidden');
+  document.getElementById('loginCard').classList.remove('hidden');
+  document.getElementById('nisInput').value='';
+  document.getElementById('passInput').value='';
+  document.getElementById('loginBtn').disabled=false;document.getElementById('loginBtn').innerHTML='<i data-lucide="log-in" style="width:18px;height:18px"></i> Masuk Ujian'; if(typeof lucide!=='undefined')lucide.createIcons();
+  location.reload();
+}
+
+// ─── CHEAT (from teacher) ───
+function forceEnd(){if(examActive)endExam('Dihentikan guru');}
+</script>
+</body>
+</html>

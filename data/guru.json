@@ -1,0 +1,42 @@
+[
+    {
+        "nis": "maz",
+        "nama": "Admin Guru",
+        "password": "$2y$10$2qNEmdGYp5EvL3Afx5ZSqewhe8qwSoqxCqvXH.jMaR7gxoz9UWygm",
+        "mapel": "Bahasa Inggris",
+        "role": "admin",
+        "id": "guru001"
+    },
+    {
+        "id": "guru002",
+        "nis": "budi",
+        "nama": "Budi Santoso",
+        "mapel": "Bahasa Inggris",
+        "password": "$2y$12$fv\/.Mb0U9E.RcJ7wISPwdu27m\/Gr6BNAIUfqqsmaOeD6SwXDR0TJi",
+        "role": "guru"
+    },
+    {
+        "id": "guru003",
+        "nis": "siti",
+        "nama": "Siti Rahmawati",
+        "mapel": "Bahasa Inggris",
+        "password": "$2y$12$kaXwfw2umtQwRXAdxnuaAOPlMakNwezczOy\/SvfkODxn3QmvlaPhq",
+        "role": "guru"
+    },
+    {
+        "id": "g6a47a0061060d",
+        "nis": "guru",
+        "nama": "Test Guru",
+        "mapel": "Matematika",
+        "password": "guru123",
+        "role": "guru"
+    },
+    {
+        "id": "g6a492c764ea68",
+        "nis": "guru",
+        "nama": "guru guru",
+        "mapel": "math",
+        "password": "guru123",
+        "role": "guru"
+    }
+]
